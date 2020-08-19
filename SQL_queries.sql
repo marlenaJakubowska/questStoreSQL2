@@ -9,6 +9,7 @@ FROM users INNER JOIN roles on users.role_id = roles.id
 GROUP BY "role"
 ORDER BY "count" ASC;
 
+
 SELECT roles.role,
     sum(case when users.isactive = TRUE then 1 else 0 end) AS active,
     sum(case when users.isactive = FALSE then 1 else 0 end) AS not_active,
@@ -16,3 +17,9 @@ SELECT roles.role,
 FROM users INNER JOIN roles on users.role_id = roles.id
 GROUP BY role
 ORDER BY role ASC;
+
+
+SELECT modules.name, count (*) AS total
+FROM students INNER JOIN modules on students.module_id = modules.id
+GROUP BY modules.name
+ORDER BY total ASC;
