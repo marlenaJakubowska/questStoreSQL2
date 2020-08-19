@@ -47,3 +47,12 @@ ORDER BY total DESC;
 SELECT "status", COUNT(*) AS total, CAST((ROUND(count(quest_statuses.id) * 100/ (SELECT COUNT("status") FROM student_quests INNER JOIN quest_statuses on student_quests.quest_status_id = quest_statuses.id))) AS varchar(100)) || '%' AS percentages
 FROM student_quests INNER JOIN quest_statuses on student_quests.quest_status_id = quest_statuses.id
 GROUP BY "status";
+
+
+-- task number 13
+SELECT users.last_name, users.first_name, count(orders.student_id) as total
+FROM users
+INNER JOIN students ON users.id = students.user_id
+INNER JOIN orders ON students.id = orders.student_id
+GROUP BY users.last_name, users.first_name
+ORDER BY total DESC LIMIT 5;
