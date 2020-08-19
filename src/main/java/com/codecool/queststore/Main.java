@@ -1,7 +1,12 @@
 package com.codecool.queststore;
 
+import com.codecool.queststore.dao.PostgresDao;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("test");
+
+        PostgresDao test = new PostgresDao();
+        test.setConnection();
+        test.closeConnection();
     }
 }
