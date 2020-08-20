@@ -9,13 +9,17 @@ public class QuestDao extends Dao<Quest> implements IQuestDao<Quest>{
 
 
     @Override
-    public List<Quest> getAllQuests() {
-        String query = "SELECT * FROM applicants;";
-        return createQuestList(query);
+    public void add(Quest quest) {
 
     }
 
-    private List<Quest> createQuestList(String query) {
+    @Override
+    public void remove(Quest quest) {
+
+    }
+
+    @Override
+    public List<Quest> getAllQuests() {
         return null;
     }
 
@@ -25,42 +29,12 @@ public class QuestDao extends Dao<Quest> implements IQuestDao<Quest>{
     }
 
     @Override
-    public void insert(Quest t) {
+    public void insert(Quest quest) {
 
     }
 
     @Override
-    public void update(Quest t) {
+    public void update(Quest quest) {
 
     }
-
-    @Override
-    public void delete(int id) {
-
-    }
-
-//--------------------redundant methods------------------------------
-
-
-    @Override
-    public List<User> getAll() {
-        return null;
-    }
-
-    @Override
-    public void add(User user) {
-
-    }
-
-    @Override
-    public void edit(User user) {
-
-    }
-
-    @Override
-    public void remove(User user) {
-
-    }
-
-
 }

@@ -8,6 +8,5 @@ public interface IQuestDao<Quest>  {
     Quest getById(int id);
     void insert(Quest t);
     void update(Quest t);
-    void delete(int id);
 
 }
