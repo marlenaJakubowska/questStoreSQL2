@@ -44,6 +44,10 @@ public class UserDao extends Dao<User> implements IUserDao{
         return users;
     }
 
+    public void displayAllUsers() {
+        sendPrintQueryToDB("SELECT * FROM users");
+    }
+
     @Override
     public List<User> getAll() {
         return null;

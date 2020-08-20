@@ -51,9 +51,9 @@ public abstract class Dao<T> implements IUserDao{
         }
     }
 
-    public void displayAllUsers() {
-        sendPrintQueryToDB("SELECT * FROM users");
-    }
+//    public void displayAllUsers() {
+//        sendPrintQueryToDB("SELECT * FROM users");
+//    }
 
     public void sendPrintQueryToDB(String query) {
         connect();
