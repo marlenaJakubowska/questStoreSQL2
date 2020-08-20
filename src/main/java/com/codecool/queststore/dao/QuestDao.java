@@ -3,24 +3,40 @@ package com.codecool.queststore.dao;
 import com.codecool.queststore.model.Quest;
 import com.codecool.queststore.model.users.User;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class QuestDao extends Dao<Quest> implements IQuestDao<Quest>{
+public class QuestDao extends ConnectDao implements IQuestDao<Quest>{
 
-
-    @Override
-    public void add(Quest quest) {
-
-    }
-
-    @Override
-    public void remove(Quest quest) {
-
-    }
 
     @Override
     public List<Quest> getAllQuests() {
-        return null;
+        String query = "SELECT * FROM quests;";
+        return createQuestsList(query);
+    }
+
+    private List<Quest> createQuestsList(String query) {
+        List<Quest> quests = new ArrayList<>();
+        try {
+            connect();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int coins = rs.getInt("coins_to_earn");
+                int moduleId = rs.getInt("module_id");
+                String description = rs.getString("description");
+                Quest quest = new Quest(id, name, coins, moduleId, description);
+                quests.add(quest);
+            }
+            rs.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return quests;
     }
 
     @Override
@@ -29,12 +45,17 @@ public class QuestDao extends Dao<Quest> implements IQuestDao<Quest>{
     }
 
     @Override
-    public void insert(Quest quest) {
+    public void insert(Quest t) {
 
     }
 
     @Override
-    public void update(Quest quest) {
+    public void update(Quest t) {
+
+    }
+
+    @Override
+    public void delete(Quest t) {
 
     }
 }

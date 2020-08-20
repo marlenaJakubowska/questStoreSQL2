@@ -2,8 +2,6 @@ package com.codecool.queststore.dao;
 
 import com.codecool.queststore.model.users.*;
 import com.codecool.queststore.view.View;
-
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
