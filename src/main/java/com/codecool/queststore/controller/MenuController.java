@@ -40,10 +40,15 @@ public abstract class MenuController {
         } while (isRunning);
     }
 
+    public void getUserEditInfo(){
+        String id = inputProvider.takeUserInput("Enter user id to edit: ");
+        String column = inputProvider.takeUserInput("Enter user column: ");
+        String newValue = inputProvider.takeUserInput("Enter new value: ");
+        userDao.formatUserInput(id, column, newValue);
+
+    }
+
     public Map<String, Runnable> getMainMenuMap() {
         return mainMenuMap;
     }
-
-
-
 }
