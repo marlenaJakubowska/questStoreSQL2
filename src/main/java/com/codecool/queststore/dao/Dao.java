@@ -1,11 +1,11 @@
 package com.codecool.queststore.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import com.codecool.queststore.model.users.User;
+import com.codecool.queststore.view.View;
 
-public class ConnectionToPostgres {
+import java.sql.*;
+
+public abstract class Dao<T> implements IUserDao{
 
     protected Connection connection;
     protected Statement statement;
@@ -15,17 +15,19 @@ public class ConnectionToPostgres {
     private final String user = "ysbidcpezviicd";
     private final String password = "53e426929003e252f789e33bfdba58b73e4a4f0f24f49d1d5248d7061f3cb729";
 
+
     public void connect() {
+        System.out.println("test4");
 
         try {
+            Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(url, user, password);
+            System.out.println("Connected to DB");
             statement = connection.createStatement();
-        } catch(SQLException e) {
+        } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
             System.out.println("Not connected");
-
         }
-        System.out.println("Connected to DB");
     }
 
     public void executeQuery(String  query){
@@ -34,7 +36,7 @@ public class ConnectionToPostgres {
             statement.execute(query);
             statement.close();
             System.out.println("Test - query executed");
-            disconnect();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -49,4 +51,6 @@ public class ConnectionToPostgres {
             System.out.println("Disconnecting failed");
         }
     }
+
+
 }
