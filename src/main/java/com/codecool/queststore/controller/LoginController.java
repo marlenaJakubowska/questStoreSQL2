@@ -12,24 +12,21 @@ import java.util.List;
 
 public class LoginController {
 
-    private View view;
-    private MenuController menuController;
-    private UserDao userDao;
-    private InputProvider inputProvider;
+    private final View view;
+    private final UserDao userDao;
+    private final InputProvider inputProvider;
 
-    public LoginController() {
+    public LoginController(View view, UserDao userDao, InputProvider inputProvider) {
+        this.view = view;
+        this.userDao = userDao;
+        this.inputProvider = inputProvider;
         init();
     }
 
     public void init() {
-
-        view = new View();
-        userDao = new UserDao();
-        inputProvider = new InputProvider();
         userDao.displayAllUsers(); //For presentation
         User user = logIn();
         setMenuController(user);
-
     }
 
     private User logIn() {
@@ -59,14 +56,15 @@ public class LoginController {
 
 
     private void setMenuController(User loggedUser) {
+        MenuController menuController;
         if (loggedUser instanceof Admin) {
-            menuController = new AdminMenuController(loggedUser, view);
+            menuController = new AdminMenuController(loggedUser, view, userDao);
             menuController.handleMenu(menuController.getMainMenuMap(), view::printAdminMenu);
         } else if(loggedUser instanceof Mentor){
-            menuController = new MentorMenuController(loggedUser, view);
+            menuController = new MentorMenuController(loggedUser, view, userDao);
             menuController.handleMenu(menuController.getMainMenuMap(), view::printMentorMenu);
         } else if(loggedUser instanceof Student) {
-            menuController = new StudentMenuController(loggedUser, view);
+            menuController = new StudentMenuController(loggedUser, view, userDao);
             menuController.handleMenu(menuController.getMainMenuMap(), view::printStudentMenu);
         }
     }

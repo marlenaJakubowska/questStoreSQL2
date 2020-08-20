@@ -10,17 +10,17 @@ import java.util.Map;
 public abstract class MenuController {
 
     protected final View view;
-    private final UserDao userDao; //testing
+    protected final UserDao userDao;
     private final InputProvider inputProvider;
     protected User user;
     protected Map<String, Runnable> mainMenuMap;
 
-    public MenuController(User user, View view) {
+    public MenuController(User user, View view, UserDao userDao) {
         this.user = user;
         this.view = view;
+        this.userDao = userDao;
         this.inputProvider = new InputProvider();
         mainMenuMap = new HashMap<>();
-        this.userDao = new UserDao(); //testing
     }
 
     public void handleMenu(Map<String, Runnable> menuMap, Runnable uiMenu) {

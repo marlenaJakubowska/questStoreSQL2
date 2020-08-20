@@ -7,13 +7,10 @@ import com.codecool.queststore.view.View;
 
 public class MentorMenuController extends MenuController {
 
-    private final UserDao userDao; //testing
-    public MentorMenuController(User loggedUser, View view) {
-        super(loggedUser, view);
+    public MentorMenuController(User loggedUser, View view, UserDao userDao) {
+        super(loggedUser, view, userDao);
         createMainMenuMap();
-        this.userDao = new UserDao(); //testing
     }
-
 
     public void displayAllStudents() {
         userDao.requestDataFromDB("SELECT id, first_name, last_name, email FROM users WHERE role_id = 3");
