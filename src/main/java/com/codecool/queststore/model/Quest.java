@@ -4,14 +4,14 @@ public class Quest {
     private int id;
     private String name;
     private int coinsToEarn;
-    private ModuleName moduleName;
+    private int moduleId;
     private String description;
 
-    public Quest(int id, String name, int coinsToEarn, ModuleName moduleName, String description) {
+    public Quest(int id, String name, int coinsToEarn, int moduleId, String description) {
         this.id = id;
         this.name = name;
         this.coinsToEarn = coinsToEarn;
-        this.moduleName = moduleName;
+        this.moduleId = moduleId;
         this.description = description;
     }
 
@@ -42,12 +42,12 @@ public class Quest {
         this.coinsToEarn = coinsToEarn;
     }
 
-    public ModuleName getModuleName() {
-        return moduleName;
+    public int getModuleId() {
+        return moduleId;
     }
 
-    public void setModuleName(ModuleName moduleName) {
-        this.moduleName = moduleName;
+    public void setModuleId(int moduleId) {
+        this.moduleId = moduleId;
     }
 
     public String getDescription() {
@@ -64,7 +64,7 @@ public class Quest {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", coinsToEarn=" + coinsToEarn +
-                ", moduleName=" + moduleName +
+                ", moduleId=" + moduleId +
                 ", description='" + description + '\'' +
                 '}';
     }
