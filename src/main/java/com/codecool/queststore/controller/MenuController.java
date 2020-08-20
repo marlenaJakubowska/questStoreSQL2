@@ -1,4 +1,5 @@
 package com.codecool.queststore.controller;
+import com.codecool.queststore.dao.UserDao;
 import com.codecool.queststore.inputProvider.InputProvider;
 import com.codecool.queststore.model.users.User;
 import com.codecool.queststore.view.View;
@@ -9,7 +10,7 @@ import java.util.Map;
 public abstract class MenuController {
 
     protected final View view;
-    //private final UserDao userDao; //testing
+    private final UserDao userDao; //testing
     private final InputProvider inputProvider;
     protected User user;
     protected Map<String, Runnable> mainMenuMap;
@@ -19,7 +20,7 @@ public abstract class MenuController {
         this.view = view;
         this.inputProvider = new InputProvider();
         mainMenuMap = new HashMap<>();
-        //this.userDao = new UserDao(); //testing
+        this.userDao = new UserDao(); //testing
     }
 
     public void handleMenu(Map<String, Runnable> menuMap, Runnable uiMenu) {
@@ -42,4 +43,10 @@ public abstract class MenuController {
     public Map<String, Runnable> getMainMenuMap() {
         return mainMenuMap;
     }
+
+    public void displayAllStudents() {
+        userDao.sendPrintQueryToDB("SELECT id, first_name, last_name, email FROM users WHERE role_id = 3");
+    }
+
+
 }

@@ -44,21 +44,6 @@ public class UserDao extends Dao<User> implements IUserDao{
         return users;
     }
 
-    public void displayAllUsers() {
-        sendPrintQueryToDB("SELECT * FROM users");
-    }
-
-    public void sendPrintQueryToDB(String query) {
-        connect();
-        try {
-            ResultSet resultSet = statement.executeQuery(query);
-            view.printResultSet(resultSet);
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public List<User> getAll() {
         return null;
