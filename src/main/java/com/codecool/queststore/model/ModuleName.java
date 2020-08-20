@@ -1,18 +1,30 @@
 package com.codecool.queststore.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum ModuleName {
-    PROGBASE("ProgBase"),
-    JAVAOOP("JavaOOP"),
-    WEBSQL("Web with SQL"),
-    ADVANCED("Advanced");
+    PROGBASE(1),
+    JAVAOOP(2),
+    WEBSQL(3),
+    ADVANCED(4);
 
-    private final String description;
+    private final int moduleId;
+    private static final Map<Integer, ModuleName> map = new HashMap<>();
 
-    ModuleName(String description) {
-        this.description = description;
+
+    ModuleName(int moduleId) {
+        this.moduleId = moduleId;
     }
 
-    public String getDescription(){
-        return description;
+    public int getModuleId() {
+        return moduleId;
+    }
+
+    public static ModuleName valueOf(int moduleIdId) {
+        for (ModuleName moduleName : ModuleName.values()) {
+            map.put(moduleName.moduleId, moduleName);
+        }
+        return map.get(moduleIdId);
     }
 }
