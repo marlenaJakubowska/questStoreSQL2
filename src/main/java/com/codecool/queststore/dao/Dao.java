@@ -9,6 +9,7 @@ public abstract class Dao<T> implements IUserDao{
 
     protected Connection connection;
     protected Statement statement;
+    private final View view = new View();
 
     private final String url = "jdbc:postgresql://ec2-34-254-24-116.eu-west-1.compute.amazonaws.com" +
             ":5432/de0sdte5vtesls";
@@ -17,8 +18,6 @@ public abstract class Dao<T> implements IUserDao{
 
 
     public void connect() {
-        System.out.println("test4");
-
         try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(url, user, password);
@@ -52,5 +51,19 @@ public abstract class Dao<T> implements IUserDao{
         }
     }
 
+//    public void displayAllUsers() {
+//        sendPrintQueryToDB("SELECT * FROM users");
+//    }
+
+    public void sendPrintQueryToDB(String query) {
+        connect();
+        try {
+            ResultSet resultSet = statement.executeQuery(query);
+            view.printResultSet(resultSet);
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

@@ -6,10 +6,10 @@ public class UserFactory {
 
     private final UserDao userDao;
 
-    public UserFactory() {
-        userDao = new UserDao();
-    }
+    public UserFactory(UserDao userDao) {
 
+        this.userDao = new UserDao();
+    }
 
     public User create(int id, String firstName, String lastName,
                        Role role, boolean isActive, String login, String password) {
