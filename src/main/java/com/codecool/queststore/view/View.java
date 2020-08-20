@@ -1,46 +1,13 @@
 package com.codecool.queststore.view;
-
 import com.jakewharton.fliptables.FlipTable;
 import com.jakewharton.fliptables.FlipTableConverters;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class View {
 
-    public void printArray(List<String[]> list) {
-        list.forEach(arr -> System.out.println(Arrays.toString(arr)));
-    }
-
     public void printResultSet(ResultSet resultSet) throws SQLException {
         System.out.println(FlipTableConverters.fromResultSet(resultSet));
-    }
-
-    public static void printLogin() {
-        System.out.println("Enter your login");
-        System.out.println("Enter your password");
-    }
-
-    public String takeUserInput(String message) {
-        String userInput;
-        Scanner scan = new Scanner(System.in);
-        boolean invalidInput;
-        Pattern pattern = Pattern.compile("[^a-zA-Z0-9@.]");
-
-        do{
-            System.out.println(message);
-            userInput = scan.nextLine();
-            invalidInput = pattern.matcher(userInput).find();
-
-            if(invalidInput){
-                System.out.println("That's not a valid input");
-            }
-        }while (invalidInput);
-        return userInput;
     }
 
     public void printAdminMenu(){
@@ -67,7 +34,6 @@ public class View {
                 {"[7] Add a reward"},
                 {"[8] Edit a reward"},
                 {"[9] See the summary of students' wallets"},
-
         };
         System.out.println(FlipTable.of(headers,data));
     }
@@ -79,11 +45,8 @@ public class View {
                 {"[2] Buy artifacts"},
                 {"[3] Buy artifacts with friends"},
                 {"[4] Show my level of experience"}
-
-
         };
         System.out.println(FlipTable.of(headers,data));
     }
-
 
 }
