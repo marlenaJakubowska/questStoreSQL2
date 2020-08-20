@@ -3,6 +3,7 @@ package com.codecool.queststore.dao;
 import com.codecool.queststore.model.users.Role;
 import com.codecool.queststore.model.users.User;
 import com.codecool.queststore.model.users.UserFactory;
+import com.codecool.queststore.view.View;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,20 +13,18 @@ import java.util.List;
 
 public class UserDao extends Dao<User> implements IUserDao{
 
-    PostgresJDBC postgresJDBC;
+
     Statement statement;
+    View view;
 
     public UserDao() {
-        postgresJDBC = new PostgresJDBC();
-
-
+        view = new View();
     }
-
 
 
     public List<User> getUsers(String query) {
         List<User> users = new ArrayList<>();
-        connection.connect();
+        connect();
         try {
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
@@ -43,7 +42,7 @@ public class UserDao extends Dao<User> implements IUserDao{
             }
             resultSet.close();
             statement.close();
-            connection.disconnect();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -57,11 +56,13 @@ public class UserDao extends Dao<User> implements IUserDao{
 
     public void sendPrintQueryToDB(String query) {
         System.out.println("test3");
-        connection.connect();
+        connect();
         try {
-            ResultSet results = statement.executeQuery(query);
-            view.printResultSet(results);
-            connection.disconnect();
+            System.out.println("test 5");
+            ResultSet resultSet = statement.executeQuery(query);
+            System.out.println("test6");
+            view.printResultSet(resultSet);
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

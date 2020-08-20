@@ -3,35 +3,55 @@ package com.codecool.queststore.dao;
 import com.codecool.queststore.model.users.User;
 import com.codecool.queststore.view.View;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public abstract class Dao<T> implements IUserDao{
 
+    protected Connection connection;
+    protected Statement statement;
+
+    private final String url = "jdbc:postgresql://ec2-34-254-24-116.eu-west-1.compute.amazonaws.com" +
+            ":5432/de0sdte5vtesls";
+    private final String user = "ysbidcpezviicd";
+    private final String password = "53e426929003e252f789e33bfdba58b73e4a4f0f24f49d1d5248d7061f3cb729";
 
 
-    PostgresJDBC connection;
-    Statement statement;
-    View view;
-//
-//    public Dao() {
-//        connection = new PostgresJDBC();
-//        view = new View();
-//
-//    }
+    public void connect() {
+        System.out.println("test4");
 
+        try {
+            connection = DriverManager.getConnection(url, user, password);
+            statement = connection.createStatement();
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Not connected");
 
+        }
+        System.out.println("Connected to DB");
 
+    }
 
     public void executeQuery(String  query){
-        connection.connect();
+        connect();
         try {
             statement.execute(query);
             statement.close();
-            connection.disconnect();
+            System.out.println("Test - query executed");
+            disconnect();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+    public void disconnect() {
+        try {
+            connection.close();
+            System.out.println("Disconnected from DB");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Disconnecting failed");
+        }
+    }
+
+
 }
