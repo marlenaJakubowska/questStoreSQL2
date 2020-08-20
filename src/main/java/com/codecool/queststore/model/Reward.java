@@ -8,15 +8,15 @@ public class Reward {
     private String description;
     private int price;
     private Category category;
-    private Mentor mentor;
+    private int mentorId;
 
-    public Reward(int id, String name, String description, int price, Category category, Mentor mentor) {
+    public Reward(int id, String name, String description, int price, Category category, int mentorId) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.category = category;
-        this.mentor = mentor;
+        this.mentorId = mentorId;
     }
 
     public Reward(){};
@@ -61,12 +61,12 @@ public class Reward {
         this.category = category;
     }
 
-    public Mentor getMentor() {
-        return mentor;
+    public int getMentorId() {
+        return mentorId;
     }
 
-    public void setMentor(Mentor mentor) {
-        this.mentor = mentor;
+    public void setMentorId(int mentorId) {
+        this.mentorId = mentorId;
     }
 
     @Override
@@ -77,7 +77,7 @@ public class Reward {
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", category=" + category +
-                ", mentor=" + mentor +
+                ", mentor=" + mentorId +
                 '}';
     }
 }

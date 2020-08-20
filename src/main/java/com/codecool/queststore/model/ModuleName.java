@@ -21,10 +21,10 @@ public enum ModuleName {
         return moduleId;
     }
 
-    public static ModuleName valueOf(int moduleIdId) {
+    public static ModuleName valueOf(int moduleId) {
         for (ModuleName moduleName : ModuleName.values()) {
             map.put(moduleName.moduleId, moduleName);
         }
-        return map.get(moduleIdId);
+        return map.get(moduleId);
     }
 }
