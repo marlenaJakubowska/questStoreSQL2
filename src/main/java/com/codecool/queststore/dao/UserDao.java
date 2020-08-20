@@ -67,4 +67,6 @@ public class UserDao extends Dao<User> implements IUserDao{
     public void remove(User o) {
 
     }
+
+
 }
