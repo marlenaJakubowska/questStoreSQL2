@@ -2,10 +2,7 @@ package com.codecool.queststore.controller;
 
 import com.codecool.queststore.dao.UserDao;
 import com.codecool.queststore.inputProvider.InputProvider;
-import com.codecool.queststore.model.users.Admin;
-import com.codecool.queststore.model.users.Mentor;
-import com.codecool.queststore.model.users.Student;
-import com.codecool.queststore.model.users.User;
+import com.codecool.queststore.model.users.*;
 import com.codecool.queststore.view.View;
 
 import java.util.List;
