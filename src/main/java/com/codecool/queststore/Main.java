@@ -1,12 +1,12 @@
 package com.codecool.queststore;
 
-import com.codecool.queststore.dao.PostgresDao;
+import com.codecool.queststore.controller.LoginController;
+import com.codecool.queststore.controller.SessionController;
 
 public class Main {
     public static void main(String[] args) {
 
-        PostgresDao test = new PostgresDao();
-        test.setConnection();
-        test.closeConnection();
+        SessionController sc = new SessionController();
+        sc.initialize();
     }
 }
