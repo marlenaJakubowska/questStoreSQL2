@@ -1,12 +1,21 @@
 package com.codecool.queststore.controller;
 
+import com.codecool.queststore.dao.UserDao;
 import com.codecool.queststore.model.users.User;
 import com.codecool.queststore.view.View;
 
 public class MentorMenuController extends MenuController {
+
+    private final UserDao userDao; //testing
     public MentorMenuController(User loggedUser, View view) {
         super(loggedUser, view);
         createMainMenuMap();
+        this.userDao = new UserDao(); //testing
+    }
+
+
+    public void displayAllStudents() {
+        userDao.sendPrintQueryToDB("SELECT id, first_name, last_name, email FROM users WHERE role_id = 3");
     }
 
     private void createMainMenuMap() {
