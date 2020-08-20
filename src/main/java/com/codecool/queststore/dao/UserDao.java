@@ -1,8 +1,8 @@
 package com.codecool.queststore.dao;
 
-import com.codecool.queststore.controller.MenuController;
 import com.codecool.queststore.model.users.*;
 import com.codecool.queststore.view.View;
+
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,7 +45,19 @@ public class UserDao extends Dao<User> implements IUserDao{
     }
 
     public void displayAllUsers() {
-        sendPrintQueryToDB("SELECT * FROM users");
+        requestDataFromDB("SELECT * FROM users");
+    }
+
+    public void formatUserInput(String id, String column, String newValue) {
+        newValue = String.format("'%s'", newValue);
+
+        prepareToEdit("users", id, column, newValue);
+    }
+
+    public void prepareToEdit(String table, String id, String column, String newValue) {
+        String condition = String.format("id = %s", id);
+        String[] inputData = {table, column, newValue, condition};
+        edit(inputData);
     }
 
     @Override
@@ -55,11 +67,6 @@ public class UserDao extends Dao<User> implements IUserDao{
 
     @Override
     public void add(User o) {
-
-    }
-
-    @Override
-    public void edit(User o) {
 
     }
 
