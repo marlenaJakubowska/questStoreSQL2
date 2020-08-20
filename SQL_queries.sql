@@ -1,9 +1,58 @@
+--task number 1
 SELECT "role", count (*) AS total
-FROM users INNER JOIN "role" on users.role_id = "role".id
+FROM users INNER JOIN roles on users.role_id = roles.id
 GROUP BY "role"
-ORDER BY "total" ASC;
+ORDER BY "total";
 
-SELECT "role", count(*), CAST((ROUND(count(role_id) * 100/ (SELECT COUNT("role") FROM users INNER JOIN "role" on users.role_id = "role".id))) AS varchar(100)) || '%' AS percentages
-FROM users INNER JOIN "role" on users.role_id = "role".id
+
+--task number 2
+SELECT "role", count(*), CAST((ROUND(count(role_id) * 100/ (SELECT COUNT("role") FROM users INNER JOIN roles on users.role_id = roles.id))) AS varchar(100)) || '%' AS percentages
+FROM users INNER JOIN roles on users.role_id = roles.id
 GROUP BY "role"
 ORDER BY "count" ASC;
+
+
+--task number 3
+SELECT roles.role,
+    sum(case when users.isactive = TRUE then 1 else 0 end) AS active,
+    sum(case when users.isactive = FALSE then 1 else 0 end) AS not_active,
+	count(*) AS total
+FROM users INNER JOIN roles on users.role_id = roles.id
+GROUP BY role
+ORDER BY role ASC;
+
+
+--task number 4
+SELECT modules.name, count (*) AS total
+FROM students INNER JOIN modules on students.module_id = modules.id
+GROUP BY modules.name
+ORDER BY total ASC;
+
+-- task number 5
+SELECT modules.name, count (students.module_id) AS total
+FROM students
+RIGHT JOIN modules on students.module_id = modules.id
+GROUP BY modules.name
+ORDER BY total DESC;
+
+-- task number 6
+SELECT modules.name, count (students.module_id) AS total,
+CAST((ROUND(count(students.module_id) * 100/ (SELECT COUNT(students.id) FROM students))) AS varchar(100)) || ' %' AS percentages
+FROM students
+RIGHT JOIN modules on students.module_id = modules.id
+GROUP BY modules.name
+ORDER BY total DESC;
+
+-- task number 7
+SELECT "status", COUNT(*) AS total, CAST((ROUND(count(quest_statuses.id) * 100/ (SELECT COUNT("status") FROM student_quests INNER JOIN quest_statuses on student_quests.quest_status_id = quest_statuses.id))) AS varchar(100)) || '%' AS percentages
+FROM student_quests INNER JOIN quest_statuses on student_quests.quest_status_id = quest_statuses.id
+GROUP BY "status";
+
+
+-- task number 13
+SELECT users.last_name, users.first_name, count(orders.student_id) as total
+FROM users
+INNER JOIN students ON users.id = students.user_id
+INNER JOIN orders ON students.id = orders.student_id
+GROUP BY users.last_name, users.first_name
+ORDER BY total DESC LIMIT 5;
