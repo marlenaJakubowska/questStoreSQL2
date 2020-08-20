@@ -6,12 +6,9 @@ import com.codecool.queststore.view.View;
 
 public class StudentMenuController extends MenuController {
 
-    private final UserDao userDao; //testing
-
-    public StudentMenuController(User loggedUser, View view) {
-        super(loggedUser, view);
+    public StudentMenuController(User loggedUser, View view, UserDao userDao) {
+        super(loggedUser, view, userDao);
         createMainMenuMap();
-        this.userDao = new UserDao(); //testing
     }
 
     private void createMainMenuMap() {

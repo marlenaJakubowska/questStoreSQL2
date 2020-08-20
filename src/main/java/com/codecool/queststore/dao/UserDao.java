@@ -2,8 +2,6 @@ package com.codecool.queststore.dao;
 
 import com.codecool.queststore.model.users.*;
 import com.codecool.queststore.view.View;
-
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -46,6 +44,10 @@ public class UserDao extends Dao<User> implements IUserDao{
 
     public void displayAllUsers() {
         requestDataFromDB("SELECT * FROM users");
+    }
+
+    public void createPrintQueryUserTable(String column, String condition) {
+        createPrintQueryForDB("users", column, condition);
     }
 
     public void formatUserInput(String id, String column, String newValue) {
