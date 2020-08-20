@@ -1,8 +1,8 @@
 package com.codecool.queststore.dao;
 
-import com.codecool.queststore.model.users.Role;
-import com.codecool.queststore.model.users.User;
-import com.codecool.queststore.model.users.UserFactory;
+import com.codecool.queststore.controller.AdminMenuController;
+import com.codecool.queststore.controller.MenuController;
+import com.codecool.queststore.model.users.*;
 import com.codecool.queststore.view.View;
 
 import java.sql.ResultSet;
@@ -14,6 +14,7 @@ import java.util.List;
 public class UserDao extends Dao<User> implements IUserDao{
 
     View view;
+    private MenuController menuController;
 
     public UserDao() {
         view = new View();
@@ -27,15 +28,15 @@ public class UserDao extends Dao<User> implements IUserDao{
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                String lastName = resultSet.getString("surname");
-                Role role = Role.valueOf(resultSet.getInt("roleId"));
+                String name = resultSet.getString("first_name");
+                String lastName = resultSet.getString("last_name");
+                Role role = Role.valueOf(resultSet.getInt("role_id"));
                 boolean isActive = resultSet.getBoolean("isActive");
                 String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
 
                 System.out.println(role);
-                User user = new UserFactory().create(id, name, lastName, role, isActive, email, password);
+                User user = new UserFactory(this).create(id, name, lastName, role, isActive, email, password);
                 users.add(user);
             }
             resultSet.close();
@@ -65,6 +66,7 @@ public class UserDao extends Dao<User> implements IUserDao{
             e.printStackTrace();
         }
     }
+
 
     @Override
     public List<User> getAll() {

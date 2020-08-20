@@ -1,5 +1,6 @@
 package com.codecool.queststore;
 
+import com.codecool.queststore.controller.LoginController;
 import com.codecool.queststore.dao.Dao;
 import com.codecool.queststore.dao.UserDao;
 
@@ -9,6 +10,8 @@ public class Main {
         UserDao userDao = new UserDao();
         System.out.println("test");
         userDao.displayAllUsers();
+        LoginController loginController = new LoginController();
+        loginController.init();
 
 
     }
