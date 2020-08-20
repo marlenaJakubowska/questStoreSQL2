@@ -17,8 +17,6 @@ public abstract class Dao<T> implements IUserDao{
 
 
     public void connect() {
-        System.out.println("test4");
-
         try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(url, user, password);

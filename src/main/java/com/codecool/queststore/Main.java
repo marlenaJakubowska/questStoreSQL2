@@ -9,13 +9,7 @@ import com.codecool.queststore.dao.UserDao;
 public class Main {
     public static void main(String[] args) {
 
-
-        UserDao userDao = new UserDao();
-        System.out.println("test");
-        userDao.displayAllUsers();
         LoginController loginController = new LoginController();
         loginController.init();
-
-
     }
 }

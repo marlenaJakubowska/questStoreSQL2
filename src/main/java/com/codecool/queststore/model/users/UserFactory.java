@@ -11,7 +11,6 @@ public class UserFactory {
         this.userDao = new UserDao();
     }
 
-
     public User create(int id, String firstName, String lastName,
                        Role role, boolean isActive, String login, String password) {
 

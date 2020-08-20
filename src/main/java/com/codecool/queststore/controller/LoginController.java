@@ -15,14 +15,17 @@ public class LoginController {
     private View view;
     private MenuController menuController;
     private UserDao userDao;
+    private InputProvider inputProvider;
 
     public LoginController() {
         init();
     }
 
     public void init() {
+
         view = new View();
         userDao = new UserDao();
+        inputProvider = new InputProvider();
         userDao.displayAllUsers(); //For presentation
         User user = logIn();
         setMenuController(user);
@@ -33,12 +36,12 @@ public class LoginController {
         User loggedUser;
         String email;
         do {
-            email = view.takeUserInput("Email: ");
-            String password = view.takeUserInput("Password: ");
+            email = inputProvider.takeUserInput("Email: ");
+            String password = inputProvider.takeUserInput("Password: ");
             loggedUser = loginTry(email, password);
         } while (loggedUser == null);
         System.out.println("Logged in");
-        //setMenuController(loggedUser);
+        setMenuController(loggedUser);
         return loggedUser;
     }
 
