@@ -3,11 +3,18 @@ import com.jakewharton.fliptables.FlipTable;
 import com.jakewharton.fliptables.FlipTableConverters;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class View {
 
     public void printResultSet(ResultSet resultSet) throws SQLException {
         System.out.println(FlipTableConverters.fromResultSet(resultSet));
+    }
+
+    public void printStringList(List<String> toPrint) {
+        for (String element : toPrint){
+            System.out.println(element);
+        }
     }
 
     public void printAdminMenu(){
@@ -34,6 +41,7 @@ public class View {
                 {"[7] Add a reward"},
                 {"[8] Edit a reward"},
                 {"[9] See the summary of students' wallets"},
+                {"[10] Show quests list"},
         };
         System.out.println(FlipTable.of(headers,data));
     }

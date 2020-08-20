@@ -7,7 +7,7 @@ public class Quest {
     private int moduleId;
     private String description;
 
-    public Quest(int id, String name, int coinsToEarn, int moduleId, String description) {
+    public Quest(int id, String name, String description, int coinsToEarn, int moduleId) {
         this.id = id;
         this.name = name;
         this.coinsToEarn = coinsToEarn;

@@ -1,14 +1,21 @@
 package com.codecool.queststore.controller;
 
 import com.codecool.queststore.dao.UserDao;
+import com.codecool.queststore.model.Quest;
 import com.codecool.queststore.model.users.Role;
 import com.codecool.queststore.model.users.User;
 import com.codecool.queststore.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MentorMenuController extends MenuController {
 
-    public MentorMenuController(User loggedUser, View view, UserDao userDao) {
+    SessionController sessionController;
+
+    public MentorMenuController(User loggedUser, View view, UserDao userDao, SessionController sessionController) {
         super(loggedUser, view, userDao);
+        this.sessionController = sessionController;
         createMainMenuMap();
     }
 
@@ -26,6 +33,22 @@ public class MentorMenuController extends MenuController {
         //mainMenuMap.put("7", this::addReward);   // TO DO
         //mainMenuMap.put("8", this::editReward);   // TO DO
         //mainMenuMap.put("9", this::seeWallets);   // TO DO
+        mainMenuMap.put("10", this::initializeGetAllQuests);   // TO DO
+    }
+
+    private void initializeGetAllQuests() {
+        List<Quest> quests = sessionController.getQuestDao().getAllQuests();
+        prepareToPrintData(quests);
+
+
+    }
+
+    private void prepareToPrintData(List<Quest> quests) {
+        List<String> toPrint = new ArrayList<>();
+        for (Quest quest : quests) {
+            toPrint.add(quest.getId() + ", " + quest.getName() + ", " + quest.getDescription() + ", " + quest.getCoinsToEarn() + ", " + quest.getModuleId());
+        }
+        sessionController.getView().printStringList(toPrint);
     }
 
     private void editStudent() {
