@@ -44,9 +44,6 @@ public abstract class MenuController {
         return mainMenuMap;
     }
 
-    public void displayAllStudents() {
-        userDao.sendPrintQueryToDB("SELECT id, first_name, last_name, email FROM users WHERE role_id = 3");
-    }
 
 
 }
