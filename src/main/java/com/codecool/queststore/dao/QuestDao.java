@@ -28,7 +28,7 @@ public class QuestDao extends ConnectDao implements IQuestDao<Quest>{
                 int coins = rs.getInt("coins_to_earn");
                 int moduleId = rs.getInt("module_id");
                 String description = rs.getString("description");
-                Quest quest = new Quest(id, name, coins, moduleId, description);
+                Quest quest = new Quest(id, name,  description, coins, moduleId);
                 quests.add(quest);
             }
             rs.close();
