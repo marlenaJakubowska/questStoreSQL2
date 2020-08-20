@@ -6,8 +6,9 @@ public class UserFactory {
 
     private final UserDao userDao;
 
-    public UserFactory() {
-        userDao = new UserDao();
+    public UserFactory(UserDao userDao) {
+
+        this.userDao = new UserDao();
     }
 
 
