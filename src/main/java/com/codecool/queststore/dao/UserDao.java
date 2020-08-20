@@ -48,6 +48,10 @@ public class UserDao extends Dao<User> implements IUserDao{
         requestDataFromDB("SELECT * FROM users");
     }
 
+    public void createPrintQueryUserTable(String column, String condition) {
+        createPrintQueryForDB("users", column, condition);
+    }
+
     public void formatUserInput(String id, String column, String newValue) {
         newValue = String.format("'%s'", newValue);
 

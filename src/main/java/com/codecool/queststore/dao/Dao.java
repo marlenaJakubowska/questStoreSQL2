@@ -51,24 +51,12 @@ public abstract class Dao<T> implements IDao<T>{
         }
     }
 
-    public void createPrintQueryUserTable(String column, String condition) {
-        createPrintQueryForDB("users", column, condition);
-    }
-
     public void createPrintQueryForDB(String table, String columns, String condition) {
         String where = condition.isEmpty() ? "" : "WHERE " + condition;
         String query = String.format("SELECT %s FROM %s %s;", columns, table, where);
         requestDataFromDB(query);
     }
 
-//    public void edit(String table, String column, String newValue, String condition) {
-//        if (column.toLowerCase().equals("id")) {
-//            System.out.println("Unable to change id");
-//            return;
-//        }
-//        String query = String.format("UPDATE %s SET %s = %s WHERE %s;", table, column, newValue, condition);
-//        executeQuery(query);
-//    }
     @Override
     public void edit(String[] inputData) {
         String table = inputData[0];
