@@ -10,19 +10,21 @@ public abstract class User {
     private final String firstName;
     private final String lastName;
     private final Role role;
+    private boolean isActive;
     private final String login;
     private final String password;
-    private boolean isActive;
+
+
 
     public User(int id, String firstName, String lastName,
-                Role role, String login, String password,
-                boolean isActive) {
+                Role role, boolean isActive, String login, String password
+                ) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
+        this.isActive = isActive;
         this.login = login;
         this.password = password;
-        this.isActive = isActive;
     }
 }

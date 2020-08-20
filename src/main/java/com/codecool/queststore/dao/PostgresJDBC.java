@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ConnectionToPostgres {
+public class PostgresJDBC {
 
     protected Connection connection;
     protected Statement statement;
@@ -15,7 +15,8 @@ public class ConnectionToPostgres {
     private final String user = "ysbidcpezviicd";
     private final String password = "53e426929003e252f789e33bfdba58b73e4a4f0f24f49d1d5248d7061f3cb729";
 
-    public void connect() {
+    public Connection connect() {
+        System.out.println("test4");
 
         try {
             connection = DriverManager.getConnection(url, user, password);
@@ -26,6 +27,8 @@ public class ConnectionToPostgres {
 
         }
         System.out.println("Connected to DB");
+        return connection;
+
     }
 
     public void executeQuery(String  query){
