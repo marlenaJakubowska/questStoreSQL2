@@ -13,8 +13,6 @@ import java.util.List;
 
 public class UserDao extends Dao<User> implements IUserDao{
 
-
-    Statement statement;
     View view;
 
     public UserDao() {

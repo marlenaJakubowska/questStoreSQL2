@@ -20,15 +20,14 @@ public abstract class Dao<T> implements IUserDao{
         System.out.println("test4");
 
         try {
+            Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(url, user, password);
+            System.out.println("Connected to DB");
             statement = connection.createStatement();
-        } catch(SQLException e) {
+        } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
             System.out.println("Not connected");
-
         }
-        System.out.println("Connected to DB");
-
     }
 
     public void executeQuery(String  query){
@@ -37,7 +36,7 @@ public abstract class Dao<T> implements IUserDao{
             statement.execute(query);
             statement.close();
             System.out.println("Test - query executed");
-            disconnect();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
