@@ -1,13 +1,20 @@
 package com.codecool.queststore;
 
-import com.codecool.queststore.dao.PostgresDao;
-import com.codecool.queststore.model.Category;
-import com.codecool.queststore.model.ModuleName;
-import com.codecool.queststore.model.Quest;
-import com.codecool.queststore.model.users.Role;
+
+import com.codecool.queststore.controller.LoginController;
+import com.codecool.queststore.dao.Dao;
+import com.codecool.queststore.dao.UserDao;
+
 
 public class Main {
     public static void main(String[] args) {
+
+
+        UserDao userDao = new UserDao();
+        System.out.println("test");
+        userDao.displayAllUsers();
+        LoginController loginController = new LoginController();
+        loginController.init();
 
 
     }
