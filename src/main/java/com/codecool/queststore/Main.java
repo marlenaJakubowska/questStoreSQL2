@@ -7,7 +7,6 @@ public class Main {
     public static void main(String[] args) {
 
         SessionController sc = new SessionController();
-//
         LoginController loginController = new LoginController(sc);
         loginController.init();
     }

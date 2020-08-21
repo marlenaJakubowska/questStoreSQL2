@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum QuestStatus {
     NOTSTARTED(1),
-    INPROGRES(2),
+    INPROGRESS(2),
     SUBMITTED(3),
     APPROVED(4),
     NOTAPPROVED(5);

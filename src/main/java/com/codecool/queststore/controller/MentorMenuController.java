@@ -5,7 +5,6 @@ import com.codecool.queststore.model.Quest;
 import com.codecool.queststore.model.users.Role;
 import com.codecool.queststore.model.users.User;
 import com.codecool.queststore.view.View;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,11 +35,13 @@ public class MentorMenuController extends MenuController {
         mainMenuMap.put("10", this::initializeGetAllQuests);   // TO DO
     }
 
+//    private void initializeGetAllQuests() {
+//        List<Quest> quests = sessionController.getQuestDao().getAllQuests();
+//        prepareToPrintData(quests);
+//    }
+
     private void initializeGetAllQuests() {
-        List<Quest> quests = sessionController.getQuestDao().getAllQuests();
-        prepareToPrintData(quests);
-
-
+        userDao.requestDataFromDB("SELECT * FROM quests;");
     }
 
     private void prepareToPrintData(List<Quest> quests) {
@@ -56,6 +57,5 @@ public class MentorMenuController extends MenuController {
         String roleString = String.valueOf(role);
         userDao.createPrintQueryUserTable("*", "role_id = " + roleString);
         getUserEditInfo();
-
     }
 }

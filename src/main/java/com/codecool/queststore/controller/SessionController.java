@@ -3,7 +3,6 @@ package com.codecool.queststore.controller;
 import com.codecool.queststore.dao.QuestDao;
 import com.codecool.queststore.dao.UserDao;
 import com.codecool.queststore.inputProvider.InputProvider;
-import com.codecool.queststore.service.QuestService;
 import com.codecool.queststore.view.View;
 
 public class SessionController {
@@ -20,7 +19,6 @@ public class SessionController {
     public InputProvider getInputProvider() {
         return inputProvider;
     }
-
 
     public QuestDao getQuestDao() {
         return questDao;

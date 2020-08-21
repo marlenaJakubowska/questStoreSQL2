@@ -1,7 +1,6 @@
 package com.codecool.queststore.dao;
 
 import com.codecool.queststore.view.View;
-
 import java.sql.*;
 
 public abstract class Dao<T> extends ConnectDao implements IDao<T>{

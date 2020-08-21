@@ -1,7 +1,5 @@
 package com.codecool.queststore.model;
 
-import com.codecool.queststore.model.users.Mentor;
-
 public class Reward {
     private int id;
     private String name;
@@ -19,7 +17,7 @@ public class Reward {
         this.mentorId = mentorId;
     }
 
-    public Reward(){};
+    public Reward(){}
 
     public int getId() {
         return id;
