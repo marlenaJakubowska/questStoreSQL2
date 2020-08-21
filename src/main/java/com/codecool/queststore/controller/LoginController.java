@@ -3,6 +3,7 @@ package com.codecool.queststore.controller;
 import com.codecool.queststore.dao.UserDao;
 import com.codecool.queststore.inputProvider.InputProvider;
 import com.codecool.queststore.model.users.*;
+import com.codecool.queststore.service.QuestService;
 import com.codecool.queststore.view.View;
 
 import java.util.List;
@@ -12,12 +13,15 @@ public class LoginController {
     private final View view;
     private final UserDao userDao;
     private final InputProvider inputProvider;
+    private final SessionController sessionController;
 
-    public LoginController(View view, UserDao userDao, InputProvider inputProvider) {
-        this.view = view;
-        this.userDao = userDao;
-        this.inputProvider = inputProvider;
-        init();
+
+    public LoginController(SessionController sessionController){
+        this.view = sessionController.getView();
+        this.userDao = sessionController.getUserDao();
+        this.inputProvider = sessionController.getInputProvider();
+        this.sessionController = sessionController;
+
     }
 
     public void init() {
@@ -55,10 +59,10 @@ public class LoginController {
     private void setMenuController(User loggedUser) {
         MenuController menuController;
         if (loggedUser instanceof Admin) {
-            menuController = new AdminMenuController(loggedUser, view, userDao);
+            menuController = new AdminMenuController(loggedUser, view, userDao, sessionController);
             menuController.handleMenu(menuController.getMainMenuMap(), view::printAdminMenu);
         } else if(loggedUser instanceof Mentor){
-            menuController = new MentorMenuController(loggedUser, view, userDao);
+            menuController = new MentorMenuController(loggedUser, view, userDao, sessionController);
             menuController.handleMenu(menuController.getMainMenuMap(), view::printMentorMenu);
         } else if(loggedUser instanceof Student) {
             menuController = new StudentMenuController(loggedUser, view, userDao);

@@ -3,7 +3,6 @@ import com.codecool.queststore.dao.UserDao;
 import com.codecool.queststore.inputProvider.InputProvider;
 import com.codecool.queststore.model.users.User;
 import com.codecool.queststore.view.View;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,7 +44,6 @@ public abstract class MenuController {
         String column = inputProvider.takeUserInput("Enter user column: ");
         String newValue = inputProvider.takeUserInput("Enter new value: ");
         userDao.formatUserInput(id, column, newValue);
-
     }
 
     public Map<String, Runnable> getMainMenuMap() {

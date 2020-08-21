@@ -1,19 +1,30 @@
 package com.codecool.queststore.dao;
 
 import com.codecool.queststore.view.View;
-
 import java.sql.*;
 
 public abstract class Dao<T> extends ConnectDao implements IDao<T>{
 
-    private final View view = new View();
+     final View view = new View();
 
-    public void executeQuery(String  query){
+    public ResultSet executeSelectQuery(String  query){
+        connect();
+        ResultSet resultSet = null;
+        try {
+            resultSet = statement.executeQuery(query);
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultSet;
+    }
+
+    public void executeInsertQuery(String  query){
         connect();
         try {
             statement.execute(query);
             statement.close();
-            System.out.println("Test - query executed");
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -39,7 +50,7 @@ public abstract class Dao<T> extends ConnectDao implements IDao<T>{
         }
 
         String query = String.format("UPDATE %s SET %s = %s WHERE %s;", table, column, newValue, condition);
-        executeQuery(query);
+        executeInsertQuery(query);
     }
 
     public void requestDataFromDB(String query) {
