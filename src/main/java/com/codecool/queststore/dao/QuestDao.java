@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestDao extends ConnectDao implements IQuestDao<Quest>{
+public class QuestDao extends Dao<Quest> implements IQuestDao<Quest>{
 
 
     @Override
@@ -43,19 +43,22 @@ public class QuestDao extends ConnectDao implements IQuestDao<Quest>{
     public Quest getById(int id) {
         return null;
     }
+//    insert into quests (name, description, coins_to_earn, module_id) values ('quest 1', 'description 1', 500, 1);
 
     @Override
-    public void insert(Quest t) {
-
+    public void add(Quest quest) {
+        String query = String.format(
+                "INSERT INTO quests (name, description, coins_to_earn, module_id) values ('%s', '%s', %d, %d);",
+                quest.getName(),
+                quest.getDescription(),
+                quest.getCoinsToEarn(),
+                quest.getModuleId()
+        );
+        executeInsertQuery(query);
     }
 
     @Override
-    public void update(Quest t) {
-
-    }
-
-    @Override
-    public void delete(Quest t) {
+    public void remove(Quest quest) {
 
     }
 }
