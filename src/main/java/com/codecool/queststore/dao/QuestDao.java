@@ -43,7 +43,6 @@ public class QuestDao extends Dao<Quest> implements IQuestDao<Quest>{
     public Quest getById(int id) {
         return null;
     }
-//    insert into quests (name, description, coins_to_earn, module_id) values ('quest 1', 'description 1', 500, 1);
 
     @Override
     public void add(Quest quest) {
