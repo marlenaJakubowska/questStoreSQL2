@@ -35,6 +35,9 @@ public class AdminMenuController extends MenuController {
                 sessionController.getInputProvider().takeUserInput("Mentor login: "),
                 sessionController.getInputProvider().takeUserInput("Mentor password: ")
         );
+        int isActiveNumber = sessionController.getInputProvider().getNumberFromUser("Is Mentor active? (1 - yes, 2 - no)");
+        boolean isActive = isActiveNumber == 1;
+        mentor.setActive(isActive);
         userDao.add(mentor);
     }
 

@@ -74,6 +74,9 @@ public class MentorMenuController extends MenuController {
                 sessionController.getInputProvider().takeUserInput("Student login: "),
                 sessionController.getInputProvider().takeUserInput("Student password: ")
         );
+        int isActiveNumber = sessionController.getInputProvider().getNumberFromUser("Is Student active? (1 - yes, 2 - no)");
+        boolean isActive = isActiveNumber == 1;
+        student.setActive(isActive);
         userDao.add(student);
     }
 
