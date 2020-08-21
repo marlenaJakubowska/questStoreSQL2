@@ -59,7 +59,7 @@ public class LoginController {
     private void setMenuController(User loggedUser) {
         MenuController menuController;
         if (loggedUser instanceof Admin) {
-            menuController = new AdminMenuController(loggedUser, view, userDao);
+            menuController = new AdminMenuController(loggedUser, view, userDao, sessionController);
             menuController.handleMenu(menuController.getMainMenuMap(), view::printAdminMenu);
         } else if(loggedUser instanceof Mentor){
             menuController = new MentorMenuController(loggedUser, view, userDao, sessionController);
