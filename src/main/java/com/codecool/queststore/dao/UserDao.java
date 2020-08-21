@@ -64,12 +64,13 @@ public class UserDao extends Dao<User> implements IUserDao{
     @Override
     public void add(User user) {
         String query = String.format(
-                "INSERT INTO users (first_name, last_name, user_details_id, role_id, isActive) values ('%s', '%s', %d, %d, %s);",
+                "INSERT INTO users (first_name, last_name, role_id, isActive, email, password) values ('%s', '%s', %d, %b, '%s', '%s');",
                 user.getFirstName(),
                 user.getLastName(),
-                3,
                 user.getRole().getRoleId(),
-                String.valueOf(user.isActive())
+                user.isActive(),
+                user.getLogin(),
+                user.getPassword()
         );
         executeInsertQuery(query);
     }
