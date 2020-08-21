@@ -63,3 +63,12 @@ FROM users
 INNER JOIN students ON users.id = students.user_id
 WHERE students.id NOT IN (SELECT student_id FROM orders)
 ORDER BY last_name;
+
+-- task 15 Nazwa kategorii, liczba artefaktóœ oraz % z całkowitej liczby artefaktóœ dla zadanych kategorii
+select 'bought' as name, count(DISTINCT reward_id),
+(count(DISTINCT reward_id)*100 / (SELECT count(*) from rewards)) || ' %' AS percentage
+from orders
+union
+select 'never_bought' as name, count(id), (count(id)*100 / (SELECT count(*) from rewards)) || ' %' AS percentage
+from rewards
+WHERE rewards.id NOT IN (SELECT reward_id FROM orders);
