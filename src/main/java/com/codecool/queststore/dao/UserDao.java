@@ -9,12 +9,6 @@ import java.util.List;
 
 public class UserDao extends Dao<User> implements IUserDao{
 
-    View view;
-
-    public UserDao() {
-        view = new View();
-    }
-
     public List<User> getUsers(String query) {
         List<User> users = new ArrayList<>();
         connect();
@@ -68,8 +62,16 @@ public class UserDao extends Dao<User> implements IUserDao{
     }
 
     @Override
-    public void add(User o) {
-
+    public void add(User user) {
+        String query = String.format(
+                "INSERT INTO users (first_name, last_name, user_details_id, role_id, isActive) values ('%s', '%s', %d, %d, %s);",
+                user.getFirstName(),
+                user.getLastName(),
+                3,
+                user.getRole().getRoleId(),
+                String.valueOf(user.isActive())
+        );
+        executeInsertQuery(query);
     }
 
     @Override
