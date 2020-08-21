@@ -2,6 +2,8 @@ package com.codecool.queststore.dao;
 
 import com.codecool.queststore.model.users.*;
 import com.codecool.queststore.view.View;
+
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -76,4 +78,13 @@ public class UserDao extends Dao<User> implements IUserDao{
     public void remove(User o) {
 
     }
+
+    //testing new things
+
+    public void updateUserFirstNameById(int id, String name) {
+        String query = "UPDATE users SET first_name = '" + name + "' " +
+                "WHERE id=" + id + ";";
+        executeQuery(query);
+    }
+
 }

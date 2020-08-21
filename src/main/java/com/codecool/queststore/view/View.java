@@ -18,6 +18,7 @@ public class View {
                 {"[3] Create class"},
                 {"[4] Show a mentor profile"},
                 {"[5] Show list of all users"},
+                {"[0] Exit"},
         };
         System.out.println(FlipTable.of(headers,data));
     }
