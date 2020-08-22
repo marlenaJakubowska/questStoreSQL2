@@ -48,6 +48,13 @@ SELECT "status", COUNT(*) AS total, CAST((ROUND(count(quest_statuses.id) * 100/ 
 FROM student_quests INNER JOIN quest_statuses on student_quests.quest_status_id = quest_statuses.id
 GROUP BY "status";
 
+-- task number 8 Nazwa questa oraz liczba studentów którzy go ukończyli - top 3 najpopularniejszych skończonych questów, w kolejności od najpopularniejszego
+SELECT quests.name, count(student_quests.quest_id) as total
+FROM quests, student_quests
+WHERE student_quests.quest_id = quests.id
+GROUP BY quests.name
+ORDER BY total DESC LIMIT 3;
+
 
 -- task number 13 Nazwisko i imię studenta oraz liczba zakupionych artefaktów - top 5 studentóœ, którzy kupili najwięcej artefaktów.
 SELECT users.last_name, users.first_name, count(orders.student_id) as total
