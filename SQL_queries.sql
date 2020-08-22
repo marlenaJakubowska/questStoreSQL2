@@ -28,12 +28,14 @@ FROM students INNER JOIN modules on students.module_id = modules.id
 GROUP BY modules.name
 ORDER BY total ASC;
 
+
 -- task number 5
 SELECT modules.name, count (students.module_id) AS total
 FROM students
 RIGHT JOIN modules on students.module_id = modules.id
 GROUP BY modules.name
 ORDER BY total DESC;
+
 
 -- task number 6
 SELECT modules.name, count (students.module_id) AS total,
@@ -43,15 +45,29 @@ RIGHT JOIN modules on students.module_id = modules.id
 GROUP BY modules.name
 ORDER BY total DESC;
 
+
 -- task number 7
 SELECT "status", COUNT(*) AS total, CAST((ROUND(count(quest_statuses.id) * 100/ (SELECT COUNT("status") FROM student_quests INNER JOIN quest_statuses on student_quests.quest_status_id = quest_statuses.id))) AS varchar(100)) || '%' AS percentages
 FROM student_quests INNER JOIN quest_statuses on student_quests.quest_status_id = quest_statuses.id
 GROUP BY "status";
 
+
 -- task number 8 Nazwa questa oraz liczba studentów którzy go ukończyli - top 3 najpopularniejszych skończonych questów, w kolejności od najpopularniejszego
-SELECT quests.name, count(student_quests.quest_id) as total
-FROM quests, student_quests
-WHERE student_quests.quest_id = quests.id
+SELECT quests.name, count(student_quests.quest_status_id) as total
+FROM quests
+INNER JOIN student_quests ON quests.id = student_quests.quest_id
+INNER JOIN quest_statuses ON student_quests.quest_status_id = quest_statuses.id
+WHERE quest_statuses.status='approved'
+GROUP BY quests.name
+ORDER BY total DESC LIMIT 3;
+
+
+-- task 9 Nazwa questa oraz liczba studentów którzy go rozpoczeli i/lub ukończyli - top 3 najpopularniejszych rozpoczętych questów, w kolejności od najpopularniejszego
+SELECT quests.name, count(student_quests.quest_status_id) as total
+FROM quests
+INNER JOIN student_quests ON quests.id = student_quests.quest_id
+INNER JOIN quest_statuses ON student_quests.quest_status_id = quest_statuses.id
+WHERE quest_statuses.status='approved' OR quest_statuses.status='in progres' OR quest_statuses.status='submitted'
 GROUP BY quests.name
 ORDER BY total DESC LIMIT 3;
 
@@ -64,12 +80,14 @@ INNER JOIN orders ON students.id = orders.student_id
 GROUP BY users.last_name, users.first_name
 ORDER BY total DESC LIMIT 5;
 
+
 -- task number 14 Nazwizka i imiona studentów, którzy nie kupili żadnego artefaktu, w kolejności alfabetycznej.
 SELECT users.last_name, users.first_name
 FROM users
 INNER JOIN students ON users.id = students.user_id
 WHERE students.id NOT IN (SELECT student_id FROM orders)
 ORDER BY last_name;
+
 
 -- task 15 Nazwa kategorii, liczba artefaktóœ oraz % z całkowitej liczby artefaktóœ dla zadanych kategorii
 select 'bought' as name, count(DISTINCT reward_id),
