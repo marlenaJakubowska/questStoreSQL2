@@ -72,6 +72,19 @@ GROUP BY quests.name
 ORDER BY total DESC LIMIT 3;
 
 
+-- task 10 Nazwisko i imię studenta oraz liczba ukończonych questów - top 5 studentów,
+ w kolejności od studenta z największą liczbą ukończonych questówa następnie w kolajności alfabetycznej - TO IMPROVE
+
+SELECT users.last_name, users.first_name, count(student_quests.id) as total
+FROM users
+INNER JOIN students ON users.id = students.user_id
+INNER JOIN student_quests ON students.student_quest_id = student_quests.id
+INNER JOIN quest_statuses ON student_quests.quest_status_id = quest_statuses.id
+WHERE quest_statuses.status = 'approved'
+GROUP BY users.last_name, users.first_name
+ORDER BY total DESC LIMIT 5;
+
+
 -- task number 13 Nazwisko i imię studenta oraz liczba zakupionych artefaktów - top 5 studentóœ, którzy kupili najwięcej artefaktów.
 SELECT users.last_name, users.first_name, count(orders.student_id) as total
 FROM users
