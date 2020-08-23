@@ -84,6 +84,13 @@ WHERE quest_statuses.status = 'approved'
 GROUP BY users.last_name, users.first_name
 ORDER BY total DESC LIMIT 5;
 
+-- task number 11 Nazwiska i imiona studentow, którzy nie rozpoczęli anie nie ukończyli  żadnego questa, w kolejności alfabetycznej
+SELECT DISTINCT users.last_name, users.first_name
+FROM users
+INNER JOIN students ON users.id = students.user_id
+WHERE students.id NOT IN (SELECT student_id FROM student_quests)
+ORDER BY users.last_name;
+
 
 -- task number 12 Nazwa artefaktu oraz liczba jego zakupow - top 3 najczesciej kupowanych  artefaktow od najpopularniejszego
 SELECT rewards.name, count(*) as total
