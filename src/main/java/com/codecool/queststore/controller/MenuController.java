@@ -43,7 +43,7 @@ public abstract class MenuController {
         String id = inputProvider.takeUserInput("Enter user id to edit: ");
         String column = inputProvider.takeUserInput("Enter user column: ");
         String newValue = inputProvider.takeUserInput("Enter new value: ");
-        userDao.formatUserInput(id, column, newValue);
+//        userDao.formatUserInput(id, column, newValue);
     }
 
     public Map<String, Runnable> getMainMenuMap() {

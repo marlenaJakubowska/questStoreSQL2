@@ -2,6 +2,8 @@ package com.codecool.queststore.dao;
 
 import com.codecool.queststore.model.Reward;
 
+import java.util.List;
+
 public class RewardDao extends Dao<Reward> implements IRewardDao<Reward> {
     @Override
     public void add(Reward reward) {
@@ -20,5 +22,10 @@ public class RewardDao extends Dao<Reward> implements IRewardDao<Reward> {
     @Override
     public void remove(Reward reward) {
 
+    }
+
+    @Override
+    public List<Reward> getAll() {
+        return null;
     }
 }

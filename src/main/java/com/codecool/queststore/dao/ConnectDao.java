@@ -10,11 +10,9 @@ public class ConnectDao {
     protected Connection connection;
     protected Statement statement;
 
-    private final String url = "jdbc:postgresql://ec2-34-254-24-116.eu-west-1.compute.amazonaws.com" +
-            ":5432/de0sdte5vtesls";
-    private final String user = "ysbidcpezviicd";
-    private final String password = "53e426929003e252f789e33bfdba58b73e4a4f0f24f49d1d5248d7061f3cb729";
-
+    private final String url = System.getenv("URL");
+    private final String user = System.getenv("USER");
+    private final String password = System.getenv("PASSWORD");
 
     public void connect() {
         try {

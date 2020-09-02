@@ -4,14 +4,14 @@ import com.codecool.queststore.dao.UserDao;
 
 public class UserFactory {
 
-    private final UserDao userDao;
+//    private final UserDao userDao;
+//
+//    public UserFactory(UserDao userDao) {
+//
+//        this.userDao = new UserDao(connectDao);
+//    }
 
-    public UserFactory(UserDao userDao) {
-
-        this.userDao = new UserDao();
-    }
-
-    public User create(int id, String firstName, String lastName,
+    public static User create(int id, String firstName, String lastName,
                        Role role, boolean isActive, String login, String password) {
 
         switch (role.toString()) {

@@ -44,12 +44,12 @@ public class AdminMenuController extends MenuController {
     public void editMentor() {
         int role = Role.MENTOR.getRoleId();
         String roleString = String.valueOf(role);
-        userDao.createPrintQueryUserTable("*", "role_id = " + roleString);
+//        userDao.createPrintQueryUserTable("*", "role_id = " + roleString);
         getUserEditInfo();
     }
 
     private void displayAllUsers() {
-        userDao.displayAllUsers();
+//        userDao.displayAllUsers();
     }
 
 }

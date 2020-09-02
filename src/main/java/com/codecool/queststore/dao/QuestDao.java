@@ -58,4 +58,9 @@ public class QuestDao extends Dao<Quest> implements IQuestDao<Quest>{
     public void remove(Quest quest) {
 
     }
+
+    @Override
+    public List<Quest> getAll() {
+        return null;
+    }
 }

@@ -22,7 +22,7 @@ public class MentorMenuController extends MenuController {
     }
 
     public void displayAllStudents() {
-        userDao.requestDataFromDB("SELECT id, first_name, last_name, email FROM users WHERE role_id = 3");
+//        userDao.requestDataFromDB("SELECT id, first_name, last_name, email FROM users WHERE role_id = 3");
     }
 
     private void createMainMenuMap() {
@@ -85,7 +85,7 @@ public class MentorMenuController extends MenuController {
 //    }
 
     private void initializeGetAllQuests() {
-        userDao.requestDataFromDB("SELECT * FROM quests;");
+//        userDao.requestDataFromDB("SELECT * FROM quests;");
     }
 
     private void prepareToPrintData(List<Quest> quests) {
@@ -99,7 +99,7 @@ public class MentorMenuController extends MenuController {
     private void editStudent() {
         int role = Role.STUDENT.getRoleId();
         String roleString = String.valueOf(role);
-        userDao.createPrintQueryUserTable("*", "role_id = " + roleString);
+//        userDao.createPrintQueryUserTable("*", "role_id = " + roleString);
         getUserEditInfo();
     }
 }

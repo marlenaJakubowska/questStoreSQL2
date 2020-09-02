@@ -1,4 +1,5 @@
 package com.codecool.queststore.view;
+import com.codecool.queststore.model.users.User;
 import com.jakewharton.fliptables.FlipTable;
 import com.jakewharton.fliptables.FlipTableConverters;
 import java.sql.ResultSet;
@@ -57,4 +58,9 @@ public class View {
         System.out.println(FlipTable.of(headers,data));
     }
 
+    public void displayUsers(List<User> users) {
+        for (User user : users) {
+            System.out.println(user.getFirstName());
+        }
+    }
 }
